@@ -1,17 +1,20 @@
 <template>
-  <div class="login">
-    <div class="login-form-wrapper">
+  <div class="login cen disflex ai-cen">
+    <div class="login-form-wrapper disflex">
       <div class="login-img-wrapper">
-        <div class="login-title">{{ $t('login.management') }}</div>
+        <div class="login-title fw900">{{ $t('login.management') }}</div>
         <img class="login-img" src="../../assets/img/login.svg" alt="" />
       </div>
       <div class="login-box">
         <el-card class="login-inner">
+          <changeLanguage class="login-lang" />
+
           <el-form
             ref="formRef"
             :model="dynamicValidateForm"
-            label-width="120px"
-            class="login-form"
+            label-width="100px"
+            label-position="left"
+            class="login-form mb30"
           >
             <el-form-item
               prop="username"
@@ -37,14 +40,15 @@
                 }
               ]"
             >
-              <el-input v-model="dynamicValidateForm.username" />
-            </el-form-item>
-            <el-form-item>
-              <el-button type="primary" @click="submitForm(formRef)">Submit</el-button>
-              <el-button @click="resetForm(formRef)">Reset</el-button>
-              <changeLanguage />
+              <el-input type="password" v-model="dynamicValidateForm.password" />
             </el-form-item>
           </el-form>
+          <el-button type="primary" class="login-btn" @click="submitForm(formRef)">{{
+            t('login.login')
+          }}</el-button>
+          <el-button class="login-btn" @click="resetForm(formRef)">{{
+            t('login.concel')
+          }}</el-button>
         </el-card>
       </div>
     </div>
@@ -53,28 +57,31 @@
 
 <script setup lang="ts">
 import { reactive, ref } from 'vue'
-import type { FormInstance } from 'element-plus'
+import { FormInstance } from 'element-plus'
 import { InterfaceLoginReq } from '../../type'
 import { useI18n } from 'vue-i18n'
+import { useRouter } from 'vue-router'
+import { loginApi } from '../../sever/api'
 import changeLanguage from '../components/changeLanguage.vue'
 
 const { t } = useI18n()
-console.log(t)
-console.log(t('username'))
-
 const formRef = ref<FormInstance>()
 const dynamicValidateForm = reactive<InterfaceLoginReq>({
   username: '',
   password: ''
 })
+const router = useRouter()
 
-const submitForm = (formEl: FormInstance | undefined) => {
+const submitForm = async (formEl: FormInstance | undefined) => {
   if (!formEl) return
-  formEl.validate(valid => {
+  formEl.validate(async valid => {
     if (valid) {
-      console.log('submit!')
+      const res = await loginApi(dynamicValidateForm)
+      if (res.data.code == 200) {
+        localStorage.setItem('token', res.data.token)
+        router.push('/home')
+      }
     } else {
-      console.log('error submit!')
       return false
     }
   })
@@ -90,13 +97,9 @@ const resetForm = (formEl: FormInstance | undefined) => {
 .login {
   width: 100%;
   height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   &-form-wrapper {
     width: 100%;
     height: 100%;
-    display: flex;
   }
   &-img-wrapper {
     width: 50%;
@@ -106,17 +109,16 @@ const resetForm = (formEl: FormInstance | undefined) => {
     font-size: 40px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     color: #fff;
-    font-weight: 900;
-    margin-top: 200px;
-    margin-bottom: 200px;
-    margin-left: 100px;
+    margin-top: 15%;
+    margin-bottom: 15%;
+    margin-left: 10%;
   }
   &-img {
-    width: 600px;
+    width: 60%;
     margin-left: 30%;
   }
   &-form {
-    margin-right: 60px;
+    margin-bottom: 20px;
   }
   &-box {
     width: 50%;
@@ -126,12 +128,25 @@ const resetForm = (formEl: FormInstance | undefined) => {
     justify-content: center;
   }
   &-inner {
-    width: 500px;
+    position: relative;
+    width: 60%;
     height: 400px;
     background-color: #fff;
     display: flex;
     align-items: center;
     justify-content: center;
   }
+  &-lang {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+  }
+  &-btn {
+    width: 100%;
+    margin-bottom: 15px;
+  }
+}
+/deep/ .el-button + .el-button {
+  margin-left: 0;
 }
 </style>

@@ -2,7 +2,7 @@ import axios from 'axios'
 import { AxiosInstance } from 'axios'
 import { ElMessage } from 'element-plus'
 
-const baseUrl = 'http://admin'
+const baseUrl = '/api'
 export const $axios: AxiosInstance = axios.create({
   baseURL: baseUrl,
   headers: {
@@ -21,7 +21,9 @@ $axios.interceptors.request.use(config => {
 })
 $axios.interceptors.response.use(
   (res: any) => {
-    if (res.code === 200) {
+    const { code, message } = res.data
+    if (code === 200) {
+      ElMessage.success(message)
       return res
     } else {
       ElMessage.error(res.massage)
@@ -31,7 +33,7 @@ $axios.interceptors.response.use(
   (err: any) => {
     console.error(err)
     const { message } = err.response.data
-    ElMessage.error(err.massage)
+    ElMessage.error(message)
     return Promise.reject(new Error(err.message))
   }
 )

@@ -15,7 +15,7 @@ router.beforeEach((to, from) => {
     to.name !== 'login'
   ) {
     // 将用户重定向到登录页面
-    return { name: 'login' }
+    return { name: 'home' }
   }
 })
 // export default route 将路由导出的写法

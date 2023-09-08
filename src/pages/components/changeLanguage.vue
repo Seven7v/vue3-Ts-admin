@@ -1,30 +1,27 @@
 <script setup lang="ts">
-import { getCurrentInstance, ref } from 'vue'
+import { getCurrentInstance, ref, watchEffect } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 // 切换语言
 const { proxy } = getCurrentInstance() as any
-const $t = useI18n()
+const { t } = useI18n()
 const lang = ref('chinese')
 
-const changeLanguage = (type: String) => {
-  console.log('当前选择的语言:' + type)
-  switch (type) {
-    case 'chinese':
-      proxy.$i18n.locale = 'zh'
-      localStorage.setItem('lang', 'zh')
-      break
-    case 'english':
-      proxy.$i18n.locale = 'en'
-      localStorage.setItem('lang', 'en')
-      break
+watchEffect(() => {
+  if (lang.value === 'chinese') {
+    proxy.$i18n.locale = 'zh'
+    localStorage.setItem('lang', 'zh')
   }
-}
+  if (lang.value === 'english') {
+    proxy.$i18n.locale = 'en'
+    localStorage.setItem('lang', 'en')
+  }
+})
 </script>
 
 <template>
-  <el-select style="width: 100px" v-model="lang" @change="changeLanguage">
-    <el-option label="中文" value="chinese" />
-    <el-option label="英文" value="english" />
+  <el-select style="width: 100px" v-model="lang">
+    <el-option :label="t('Chinese')" value="chinese" />
+    <el-option :label="t('English')" value="english" />
   </el-select>
 </template>

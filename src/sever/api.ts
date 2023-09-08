@@ -1,6 +1,6 @@
 import { $axios } from './index.ts'
 import { InterfaceLoginReq } from '../type'
 
-export const login = (params: InterfaceLoginReq) => {
-  return $axios.post('/api/login', params)
+export const loginApi = (params: InterfaceLoginReq) => {
+  return $axios.post('/login', params)
 }
