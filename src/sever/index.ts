@@ -15,7 +15,6 @@ $axios.interceptors.request.use(config => {
   var xtoken: any = localStorage.getItem('token')
   if (xtoken) {
     xtoken = 'Bearer' + xtoken
-    // console.log(xtoken)
     config.headers['Authorization'] = xtoken
   }
   return config
