@@ -1,7 +1,7 @@
 <template>
   <div class="login cen disflex ai-cen">
     <div class="login-form-wrapper disflex">
-      <div class="login-img-wrapper">
+      <div class="login-img-wrapper bg-prim">
         <div class="login-title fw900">{{ $t('login.management') }}</div>
         <img class="login-img" src="../../assets/img/login.svg" alt="" />
       </div>
@@ -79,7 +79,7 @@ const submitForm = async (formEl: FormInstance | undefined) => {
       const res = await loginApi(dynamicValidateForm)
       if (res.data.code == 200) {
         localStorage.setItem('token', res.data.token)
-        router.push('/home')
+        router.push('/admin/home')
       }
     } else {
       return false
@@ -103,7 +103,6 @@ const resetForm = (formEl: FormInstance | undefined) => {
   }
   &-img-wrapper {
     width: 50%;
-    background-color: #1e20d3cf;
   }
   &-title {
     font-size: 40px;

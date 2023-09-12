@@ -88,4 +88,19 @@
   font-weight: 900;
 }
 
+.bg-blod {
+    background-color: #15166bcf;
+    color: #fff;
+}
+.bg-prim{
+    background-color: #1e20d3cf;
+}
+html{
+    font-family:Verdana, Geneva, Tahoma, sans-serif
+}
+
+.h100{
+    height: calc(100vh - 80px); 
+}
+
 /* --el-color-primary-dark-2: #337ecc */

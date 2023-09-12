@@ -9,6 +9,18 @@ const zh = {
     management: '管理平台',
     login: '登陆',
     concel: '取消'
+  },
+  header: {
+    welcome: '欢迎！ 摘掉鬼脸~'
+  },
+  routes: {
+    admin: '控制台',
+    home: 'HomePage',
+    statistics: '统计管理',
+    chart: '统计数据',
+    document: '文档管理',
+    setting: '文档配置',
+    preview: '文档预览'
   }
 }
 export { zh }

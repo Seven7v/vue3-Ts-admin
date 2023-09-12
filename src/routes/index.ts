@@ -7,7 +7,7 @@ const router = createRouter({
 })
 
 const isAuthenticated = localStorage.getItem('token')
-router.beforeEach((to, from, next) => {
+router.beforeEach((to, from) => {
   if (
     // 检查用户是否已登录
     !isAuthenticated &&
@@ -16,8 +16,6 @@ router.beforeEach((to, from, next) => {
   ) {
     // 将用户重定向到登录页面
     return { name: 'login' }
-  } else {
-    next()
   }
 })
 // export default route 将路由导出的写法
