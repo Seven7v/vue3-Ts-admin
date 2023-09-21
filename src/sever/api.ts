@@ -4,3 +4,7 @@ import { InterfaceLoginReq } from '../type'
 export const loginApi = (params: InterfaceLoginReq) => {
   return $axios.post('/login', params)
 }
+
+export const createUserApi = (params: InterfaceLoginReq) => {
+  return $axios.post('/create', params)
+}

@@ -28,8 +28,13 @@ export default defineConfig({
     // 设置代理
     proxy: {
       // 将请求代理到另一个服务器
+      //   '/api': {
+      //     target: 'http://rap2api.taobao.org/app/mock/314059/api', //这是你要跨域请求的地址前缀
+      //     changeOrigin: true, //开启跨域
+      //     rewrite: path => path.replace(/^\/api/, '') //去除前缀api
+      //   },
       '/api': {
-        target: 'http://rap2api.taobao.org/app/mock/314059/api', //这是你要跨域请求的地址前缀
+        target: 'http://localhost:8001/api', //这是你要跨域请求的地址前缀
         changeOrigin: true, //开启跨域
         rewrite: path => path.replace(/^\/api/, '') //去除前缀api
       }

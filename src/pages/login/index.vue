@@ -61,7 +61,7 @@ import { FormInstance } from 'element-plus'
 import { InterfaceLoginReq } from '../../type'
 import { useI18n } from 'vue-i18n'
 import { useRouter } from 'vue-router'
-import { loginApi } from '../../sever/api'
+import { loginApi, createUserApi } from '../../sever/api'
 import changeLanguage from '../components/changeLanguage.vue'
 
 const { t } = useI18n()
@@ -76,6 +76,8 @@ const submitForm = async (formEl: FormInstance | undefined) => {
   if (!formEl) return
   formEl.validate(async valid => {
     if (valid) {
+      // 创建用户时使用
+      // await createUserApi(dynamicValidateForm)
       const res = await loginApi(dynamicValidateForm)
       if (res.data.code == 200) {
         localStorage.setItem('token', res.data.token)

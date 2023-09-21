@@ -14,13 +14,14 @@ export const $axios: AxiosInstance = axios.create({
 $axios.interceptors.request.use(config => {
   var xtoken: any = localStorage.getItem('token')
   if (xtoken) {
-    xtoken = 'Bearer' + xtoken
+    xtoken = xtoken
     config.headers['Authorization'] = xtoken
   }
   return config
 })
 $axios.interceptors.response.use(
   (res: any) => {
+    console.log(res)
     const { code, message } = res.data
     if (code === 200) {
       ElMessage.success(message)
@@ -32,7 +33,7 @@ $axios.interceptors.response.use(
   },
   (err: any) => {
     console.error(err)
-    const { message } = err.response.data
+    const message = err.response.data
     ElMessage.error(message)
     return Promise.reject(new Error(err.message))
   }
