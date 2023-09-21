@@ -6,8 +6,9 @@ const router = createRouter({
   routes
 })
 
-const isAuthenticated = localStorage.getItem('token')
 router.beforeEach((to, from) => {
+  const isAuthenticated = localStorage.getItem('token')
+  console.log(to, from)
   if (
     // 检查用户是否已登录
     !isAuthenticated &&

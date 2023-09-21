@@ -81,7 +81,9 @@ const submitForm = async (formEl: FormInstance | undefined) => {
       const res = await loginApi(dynamicValidateForm)
       if (res.data.code == 200) {
         localStorage.setItem('token', res.data.token)
-        router.push('/admin/home')
+        router.push({
+          name: 'home'
+        })
       }
     } else {
       return false
