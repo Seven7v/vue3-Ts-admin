@@ -6,7 +6,7 @@
         <SidderBar />
       </div>
       <div class="h100">
-        <TopBar />
+        <Breadcrumb />
         <router-view></router-view>
       </div>
     </div>
@@ -15,7 +15,7 @@
 
 <script setup lang="ts">
 import SidderBar from './components/SidderBar.vue'
-import TopBar from './components/TopBar.vue'
+import Breadcrumb from './components/Breadcrumb.vue'
 import Header from './components/Header.vue'
 </script>
 

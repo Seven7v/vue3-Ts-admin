@@ -16,6 +16,14 @@ export default defineConfig({
       resolvers: [ElementPlusResolver()]
     })
   ],
+  optimizeDeps: {
+    include: ['@vue/babel-plugin-jsx']
+  },
+  esbuild: {
+    // 告诉 esbuild 在 JSX 文件中添加自定义转换规则，以便使用 Vue JSX
+    jsxFactory: '_c',
+    jsxFragment: '_Fragment'
+  },
   resolve: {
     // 配置别名
     alias: {

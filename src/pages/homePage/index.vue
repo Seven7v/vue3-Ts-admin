@@ -1,7 +1,9 @@
 <template>
-  <div>homepage</div>
+  <div class="mod-homepage p20">
+    <div>homepage</div>
+  </div>
 </template>
 
 <script setup lang="ts"></script>
 
-<style scoped></style>
+<style lang="less"></style>

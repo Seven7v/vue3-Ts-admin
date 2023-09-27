@@ -3,6 +3,8 @@ const Layout = () => import('../layout/index.vue')
 const Login = () => import('../pages/login/index.vue')
 const Homepage = () => import('../pages/homePage/index.vue')
 const Chart = () => import('../pages/chart/index.vue')
+const DocumentSetting = () => import('../pages/document/setting.vue')
+const DocumentPreview = () => import('../pages/document/preview.vue')
 
 const routes: RouteRecordRaw[] = [
   {
@@ -10,7 +12,7 @@ const routes: RouteRecordRaw[] = [
     component: Layout,
     name: 'admin',
     meta: {
-      icon: 'HomeFilled',
+      icon: 'Menu',
       isNav: true
     },
     children: [
@@ -61,12 +63,12 @@ const asyncRouter: RouteRecordRaw[] = [
     name: 'document',
     meta: {
       isNav: true,
-      icon: 'PieChart'
+      icon: 'Document'
     },
     children: [
       {
         path: '/document/setting',
-        component: Homepage,
+        component: DocumentSetting,
         name: 'setting',
         meta: {
           isNav: true
@@ -74,7 +76,7 @@ const asyncRouter: RouteRecordRaw[] = [
       },
       {
         path: '/document/preview',
-        component: Chart,
+        component: DocumentPreview,
         name: 'preview',
         meta: {
           isNav: true
