@@ -26,7 +26,7 @@ watch(
     //只有一级菜单，则只添加一次
     if (to.matched[0].children.length === 1) {
       list.value.push({
-        title: t(`routes.${to.name}`),
+        title: to.name,
         path: to.fullPath
       })
       return
@@ -35,7 +35,7 @@ watch(
       to.matched.forEach((item: any) => {
         console.log(item)
         list.value.push({
-          title: t(`routes.${item.name}`),
+          title: item.name,
           path: item.fullPath
         })
       })
@@ -51,7 +51,7 @@ watch(
   <div class="mod-bread-crumb ml20">
     <el-breadcrumb separator="/">
       <el-breadcrumb-item v-for="item in list" :key="item.title" :to="{ path: item.path }">
-        {{ item.title }}
+        {{ t(`routes.${item.title}`) }}
       </el-breadcrumb-item>
     </el-breadcrumb>
   </div>
