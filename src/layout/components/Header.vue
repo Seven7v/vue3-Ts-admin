@@ -6,7 +6,10 @@
         {{ $t('header.welcome') }}
       </h1>
     </div>
-    <changeLanguage class="mr10" />
+    <div>
+      <changeLanguage class="mr10" />
+      <el-button class="mr10 logout-btn" link>{{ $t('login.logout') }}</el-button>
+    </div>
   </div>
 </template>
 
@@ -14,9 +17,15 @@
 import changeLanguage from '../../pages/components/changeLanguage.vue'
 </script>
 
-<style scoped>
+<style lang="less">
 .mod-header {
   height: 80px;
+  .logout-btn {
+    color: #fff;
+  }
+  .logout-btn:hover {
+    color: aliceblue;
+  }
 }
 .logo-img {
   width: 70px;

@@ -8,6 +8,7 @@ const en = {
     passwordRequire: 'Please input Password',
     management: 'Management Platform',
     login: 'Login',
+    logout: 'Logout',
     concel: 'Concel'
   },
   header: {

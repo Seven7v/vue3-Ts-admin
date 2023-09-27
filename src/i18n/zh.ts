@@ -8,6 +8,7 @@ const zh = {
     passwordRequire: '请输入密码',
     management: '管理平台',
     login: '登陆',
+    logout: '登出',
     concel: '取消'
   },
   header: {
