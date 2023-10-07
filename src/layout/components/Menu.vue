@@ -1,4 +1,5 @@
 <template>
+  <!-- 无子选择的菜单显示 -->
   <div>
     <el-menu-item
       v-for="item of subRoutes.children"

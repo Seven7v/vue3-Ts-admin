@@ -51,6 +51,8 @@ onMounted(() => {
     })()
   }
 })
+
+// 检测页面大小判断菜单折叠
 watchEffect(() => {
   if (screenWidth.value < 700) {
     isCollapse.value = true

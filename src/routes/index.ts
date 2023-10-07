@@ -1,13 +1,21 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import { App } from 'vue'
+import { getUserInfoApi } from '../sever/api'
 import routes from './routes'
 const router = createRouter({
   history: createWebHistory(), //history模式
   routes
 })
 
-router.beforeEach((to, from) => {
+router.beforeEach(async (to, from) => {
   const isAuthenticated = localStorage.getItem('token')
+  if (isAuthenticated) {
+    const userInfo = localStorage.getItem('userInfo')
+    if (userInfo === null) {
+      const resq = await getUserInfoApi()
+      localStorage.setItem('userInfo', JSON.stringify(resq.data.data.userInfo))
+    }
+  }
   console.log(to, from)
   if (
     // 检查用户是否已登录

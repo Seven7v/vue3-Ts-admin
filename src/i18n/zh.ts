@@ -1,6 +1,8 @@
 const zh = {
   Chinese: '中文',
   English: '英文',
+  OK: '确认',
+  cancel: '取消',
   login: {
     username: '用户名',
     password: '密码',
@@ -12,7 +14,9 @@ const zh = {
     concel: '取消'
   },
   header: {
-    welcome: '欢迎！ 摘掉鬼脸~'
+    welcome: '欢迎！ 摘掉鬼脸~',
+    confirmLogout: '您将登出账号是否继续？',
+    tips: '提示'
   },
   routes: {
     admin: '控制台',

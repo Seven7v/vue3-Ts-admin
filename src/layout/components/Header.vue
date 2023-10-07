@@ -8,13 +8,51 @@
     </div>
     <div>
       <changeLanguage class="mr10" />
-      <el-button class="mr10 logout-btn" link>{{ $t('login.logout') }}</el-button>
+      <span>{{ userInfo.username }}</span>
+      <el-button class="mr10 logout-btn" link @click="handleOpenConfirm">{{
+        $t('login.logout')
+      }}</el-button>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import changeLanguage from '../../pages/components/changeLanguage.vue'
+import { UserInfoRes } from '../../type'
+import { logoutApi } from '../../sever/api'
+import { useRouter } from 'vue-router'
+import { reactive } from 'vue'
+import { useI18n } from 'vue-i18n'
+import { ElMessage, ElMessageBox } from 'element-plus'
+import type { Action } from 'element-plus'
+
+const { t } = useI18n()
+const userInfo: UserInfoRes = reactive(JSON.parse(localStorage.getItem('userInfo')))
+const router = useRouter()
+
+// 登录确认
+const handleOpenConfirm = () => {
+  ElMessageBox.confirm(t('header.confirmLogout'), t('header.tips'), {
+    confirmButtonText: t('OK'),
+    cancelButtonText: t('cancel'),
+    type: 'warning'
+  })
+    .then(() => {
+      handleLogout()
+    })
+    .catch(() => {})
+}
+
+// 退出登录
+const handleLogout = async () => {
+  const result = await logoutApi()
+  //清除信息
+  localStorage.removeItem('token')
+  localStorage.removeItem('userInfo')
+  router.push({
+    name: 'login'
+  })
+}
 </script>
 
 <style lang="less">
