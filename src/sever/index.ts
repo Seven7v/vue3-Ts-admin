@@ -24,7 +24,9 @@ $axios.interceptors.response.use(
     console.log(res)
     const { code, message } = res.data
     if (code === 200) {
-      ElMessage.success(message)
+      if (message) {
+        ElMessage.success(message)
+      }
       return res
     } else {
       ElMessage.error(res.massage)

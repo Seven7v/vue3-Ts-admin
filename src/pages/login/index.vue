@@ -62,6 +62,7 @@ import { InterfaceLoginReq } from '../../type'
 import { useI18n } from 'vue-i18n'
 import { useRouter } from 'vue-router'
 import { loginApi, createUserApi } from '../../sever/api'
+import { setLoginTimeApi } from '../../sever/data'
 import changeLanguage from '../components/changeLanguage.vue'
 
 const { t } = useI18n()
@@ -81,6 +82,12 @@ const submitForm = async (formEl: FormInstance | undefined) => {
       const res = await loginApi(dynamicValidateForm)
       if (res.data.code == 200) {
         localStorage.setItem('token', res.data.token)
+        const loginTimeParams = {
+          username: dynamicValidateForm.username,
+          loginTime: new Date()
+        }
+        const resq = await setLoginTimeApi(loginTimeParams)
+        console.log(resq)
         router.push({
           name: 'home'
         })
