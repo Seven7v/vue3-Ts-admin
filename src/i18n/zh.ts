@@ -19,13 +19,21 @@ const zh = {
     tips: '提示'
   },
   routes: {
-    admin: '控制台',
+    admin: '平台管理',
     home: 'HomePage',
     statistics: '统计管理',
     chart: '统计数据',
     document: '文档管理',
     setting: '文档配置',
-    preview: '文档预览'
+    preview: '文档预览',
+    console: '控制台',
+    permissionConsole: '权限管理',
+    userConsole: '用户管理'
+  },
+  homePage: {
+    useV3TS: '使用Vite构建项目，vue3 + TypeScirpt + elementPlus技术栈实现',
+    sevice: 'nodejs+koa.js 实现服务端内容!',
+    url: '可以点击Banner 获取页面代码'
   }
 }
 export { zh }

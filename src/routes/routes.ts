@@ -5,6 +5,8 @@ const Homepage = () => import('../pages/homePage/index.vue')
 const Chart = () => import('../pages/chart/index.vue')
 const DocumentSetting = () => import('../pages/document/setting.vue')
 const DocumentPreview = () => import('../pages/document/preview.vue')
+const UserConsole = () => import('../pages/console/userConsole.vue')
+const PermissionConsole = () => import('../pages/console/permissionConsole.vue')
 
 const routes: RouteRecordRaw[] = [
   {
@@ -44,7 +46,8 @@ const asyncRouter: RouteRecordRaw[] = [
     name: 'statistics',
     meta: {
       icon: 'PieChart',
-      isNav: true
+      isNav: true,
+      role: ['admin', 'editor', 'normal']
     },
     children: [
       {
@@ -52,7 +55,8 @@ const asyncRouter: RouteRecordRaw[] = [
         component: Chart,
         name: 'chart',
         meta: {
-          isNav: true
+          isNav: true,
+          role: ['admin', 'editor', 'normal']
         }
       }
     ]
@@ -71,15 +75,47 @@ const asyncRouter: RouteRecordRaw[] = [
         component: DocumentSetting,
         name: 'setting',
         meta: {
-          isNav: true
+          isNav: true,
+          role: ['admin', 'editor', 'normal']
         }
       },
       {
         path: '/document/preview',
-        component: DocumentPreview,
+        component: PermissionConsole,
         name: 'preview',
         meta: {
-          isNav: true
+          isNav: true,
+          role: ['admin', 'editor', 'normal']
+        }
+      }
+    ]
+  },
+  {
+    path: '/console',
+    component: Layout,
+    name: 'console',
+    meta: {
+      isNav: true,
+      icon: 'HelpFilled'
+    },
+    children: [
+      {
+        path: '/console/user',
+        component: UserConsole,
+        name: 'userConsole',
+        meta: {
+          isNav: true,
+          // 暂未设置用户权限
+          role: ['admin', 'editor']
+        }
+      },
+      {
+        path: '/console/permission',
+        component: PermissionConsole,
+        name: 'permissionConsole',
+        meta: {
+          isNav: true,
+          role: ['admin']
         }
       }
     ]

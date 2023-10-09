@@ -5,7 +5,7 @@
       <div class="h100">
         <SidderBar />
       </div>
-      <div class="h100">
+      <div class="h100 flex1">
         <Breadcrumb />
         <router-view></router-view>
       </div>

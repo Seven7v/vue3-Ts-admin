@@ -103,4 +103,8 @@ html{
     height: calc(100vh - 80px); 
 }
 
+.flex1{
+    flex: 1;
+}
+
 /* --el-color-primary-dark-2: #337ecc */
