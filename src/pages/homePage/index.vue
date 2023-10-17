@@ -7,18 +7,66 @@
     </el-carousel>
     <div class="dashbord-data p20">
       <el-card class="box-card">
-        <div v-for="o in 4" :key="o" class="text item">{{ 'List item ' + o }}</div>
+        <div class="card-item">
+          <svg class="icon home-icon" aria-hidden="true">
+            <use xlink:href="#icon-yonghuguanli"></use>
+          </svg>
+          <div class="card-value">
+            <div class="card-label t-cen">{{ t('homePage.loginCount') }}</div>
+            <div class="t-cen card-count mt10">{{ dashData.loginCount }}</div>
+          </div>
+        </div>
+      </el-card>
+      <el-card class="box-card">
+        <div class="card-item">
+          <svg class="icon home-icon" aria-hidden="true">
+            <use xlink:href="#icon-huashuguanli"></use>
+          </svg>
+          <div class="card-value">
+            <div class="card-label t-cen">{{ t('homePage.messageCount') }}</div>
+            <div class="t-cen card-count mt10">{{ dashData.messageCount }}</div>
+          </div>
+        </div>
+      </el-card>
+      <el-card class="box-card">
+        <div class="card-item">
+          <svg class="icon home-icon" aria-hidden="true">
+            <use xlink:href="#icon-zhihuifenxi"></use>
+          </svg>
+          <div class="card-value">
+            <div class="card-label t-cen">{{ t('homePage.payCount') }}</div>
+            <div class="t-cen card-count mt10">{{ dashData.payCount }}</div>
+          </div>
+        </div>
+      </el-card>
+      <el-card class="box-card">
+        <div class="card-item">
+          <svg class="icon home-icon" aria-hidden="true">
+            <use xlink:href="#icon-APIguanli"></use>
+          </svg>
+          <div class="card-value">
+            <div class="card-label t-cen">{{ t('homePage.keyWord') }}</div>
+            <div class="t-cen card-count mt10">{{ dashData.keyWord }}</div>
+          </div>
+        </div>
       </el-card>
     </div>
+    <el-row style="margin-top: 50px">
+      <el-col :span="24">
+        <div ref="guageChart" :style="{ width: '100%', height: '700px' }"></div>
+      </el-col>
+    </el-row>
   </div>
 </template>
 
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
 import { UserInfoRes } from '../../type'
-import { reactive, ref } from 'vue'
-import { sendMessage } from '../../sever/data'
+import { reactive, ref, onMounted } from 'vue'
+import { sendMessage, getDashBord } from '../../sever/data'
+import * as echarts from 'echarts'
 const { t } = useI18n()
+let echart = echarts
 const userInfo: UserInfoRes = JSON.parse(localStorage.getItem('userInfo'))
 
 const bannerList = reactive([
@@ -37,7 +85,96 @@ const bannerList = reactive([
     url: 'https://github.com/Seven7v/vue3-Ts-admin'
   }
 ])
-
+const dashData = ref({})
+const guageChart = ref(null)
+onMounted(() => {
+  initChart()
+})
+const initChart = () => {
+  let chart = echart.init(guageChart.value)
+  let base = +new Date(1968, 9, 3)
+  let oneDay = 24 * 3600 * 1000
+  let date = []
+  let data = [Math.random() * 300]
+  for (let i = 1; i < 20000; i++) {
+    var now = new Date((base += oneDay))
+    date.push([now.getFullYear(), now.getMonth() + 1, now.getDate()].join('/'))
+    data.push(Math.round((Math.random() - 0.5) * 20 + data[i - 1]))
+  }
+  chart.setOption({
+    tooltip: {
+      trigger: 'axis',
+      position: function (pt) {
+        return [pt[0], '10%']
+      }
+    },
+    grid: {
+      left: '5%',
+      right: '5%'
+    },
+    title: {
+      left: 'center',
+      text: 'Large Area Chart'
+    },
+    toolbox: {
+      feature: {
+        dataZoom: {
+          yAxisIndex: 'none'
+        },
+        restore: {},
+        saveAsImage: {}
+      }
+    },
+    xAxis: {
+      type: 'category',
+      boundaryGap: false,
+      data: date
+    },
+    yAxis: {
+      type: 'value',
+      boundaryGap: [0, '100%']
+    },
+    dataZoom: [
+      {
+        type: 'inside',
+        start: 0,
+        end: 10
+      },
+      {
+        start: 0,
+        end: 10
+      }
+    ],
+    series: [
+      {
+        name: 'Fake Data',
+        type: 'line',
+        symbol: 'none',
+        sampling: 'lttb',
+        itemStyle: {
+          color: '#ae86ff'
+        },
+        areaStyle: {
+          color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+            {
+              offset: 0,
+              color: '#eeb3ce'
+            },
+            {
+              offset: 1,
+              color: '#ae86ff'
+            }
+          ])
+        },
+        data: data
+      }
+    ]
+  })
+  window.onresize = function () {
+    //自适应大小
+    chart.resize()
+  }
+}
 const handleSendMessage = async () => {
   const message = {
     username: userInfo.username,
@@ -47,7 +184,13 @@ const handleSendMessage = async () => {
   const res = await sendMessage(message)
   console.log(res)
 }
-handleSendMessage()
+
+const getData = async () => {
+  const res = await getDashBord()
+  dashData.value = res.data.data
+}
+// handleSendMessage()
+getData()
 </script>
 
 <style lang="less">
@@ -75,7 +218,30 @@ handleSendMessage()
     display: flex;
     width: 100%;
     .box-card {
-      width: 25%;
+      width: 24%;
+      margin-right: 1%;
+    }
+  }
+  .home-icon {
+    font-size: 60px;
+  }
+  .card {
+    &-item {
+      display: flex;
+      align-items: center;
+    }
+    &-label {
+      font-size: 12px;
+      color: #b4b0b0;
+    }
+    &-value {
+      width: 30px;
+      flex: 1;
+    }
+    &-count {
+      color: #333;
+      font-weight: 700;
+      font-size: 24px;
     }
   }
 }

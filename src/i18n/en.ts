@@ -31,9 +31,14 @@ const en = {
     userConsole: 'User Console'
   },
   homePage: {
-    useV3TS: '使用Vite构建项目，vue3 + TypeScirpt + elementPlus技术栈实现',
-    sevice: 'nodejs+koa.js 实现服务端内容!',
-    url: '可以点击Banner 获取页面代码'
+    useV3TS:
+      'Use Vite to build the project, vue3 + TypeScirpt + elementPlus technology stack implementation',
+    sevice: 'nodejs+koa.js implements server-side content!',
+    url: 'You can click on the Banner to get the page code',
+    loginCount: 'Login Times',
+    messageCount: 'Message Count',
+    payCount: 'Pay Count',
+    keyWord: 'KeyWords'
   }
 }
 export { en }

@@ -10,3 +10,8 @@ export const setLoginTimeApi = (params: InterfaceLoginTimeReq) => {
 export const sendMessage = (params: SendMessageReq) => {
   return $axios.post('/send-message', params)
 }
+
+// 获取首页dashbord
+export const getDashBord = () => {
+  return $axios.get('/data/dashbord')
+}

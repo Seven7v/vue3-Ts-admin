@@ -33,7 +33,11 @@ const zh = {
   homePage: {
     useV3TS: '使用Vite构建项目，vue3 + TypeScirpt + elementPlus技术栈实现',
     sevice: 'nodejs+koa.js 实现服务端内容!',
-    url: '可以点击Banner 获取页面代码'
+    url: '可以点击Banner 获取页面代码',
+    loginCount: '用户登录',
+    messageCount: '消息',
+    payCount: '订单数',
+    keyWord: '关键词'
   }
 }
 export { zh }

@@ -107,4 +107,8 @@ html{
     flex: 1;
 }
 
+.t-cen{
+    text-align: center;
+}
+
 /* --el-color-primary-dark-2: #337ecc */
