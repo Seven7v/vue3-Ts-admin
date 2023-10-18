@@ -5,7 +5,7 @@
       <div class="h100">
         <SidderBar />
       </div>
-      <div class="h100 flex1">
+      <div class="h100 flex1 overx-hide">
         <Breadcrumb />
         <router-view></router-view>
       </div>

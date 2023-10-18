@@ -26,6 +26,7 @@ const en = {
     document: 'Document',
     setting: 'Setting',
     preview: 'Preview',
+    table: 'Table',
     console: 'Console',
     permissionConsole: 'Permission Console',
     userConsole: 'User Console'

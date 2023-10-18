@@ -14,7 +14,7 @@ const zh = {
     concel: '取消'
   },
   header: {
-    welcome: '欢迎！ 摘掉鬼脸~',
+    welcome: '欢迎来到 Ghost Face！',
     confirmLogout: '您将登出账号是否继续？',
     tips: '提示'
   },
@@ -26,6 +26,7 @@ const zh = {
     document: '文档管理',
     setting: '文档配置',
     preview: '文档预览',
+    table: '图表展示',
     console: '控制台',
     permissionConsole: '权限管理',
     userConsole: '用户管理'

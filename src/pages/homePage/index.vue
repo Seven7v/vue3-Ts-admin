@@ -2,7 +2,9 @@
   <div class="mod-homepage">
     <el-carousel trigger="click" class="banner" height="80px">
       <el-carousel-item v-for="item in bannerList" :key="item.id">
-        <div class="banner-item">{{ t(`homePage.${item.value}`) }}</div>
+        <div class="banner-item">
+          <a :href="item.url ? item.url : '#'" target="_blank">{{ t(`homePage.${item.value}`) }}</a>
+        </div>
       </el-carousel-item>
     </el-carousel>
     <div class="dashbord-data p20">
@@ -184,7 +186,6 @@ const handleSendMessage = async () => {
   const res = await sendMessage(message)
   console.log(res)
 }
-
 const getData = async () => {
   const res = await getDashBord()
   dashData.value = res.data.data
@@ -197,6 +198,9 @@ getData()
 .mod-homepage {
   .banner {
     width: 100%;
+  }
+  a {
+    color: #fff;
   }
   .el-carousel__item .banner-item {
     width: 100%;

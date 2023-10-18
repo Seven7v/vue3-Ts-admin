@@ -80,9 +80,9 @@ const asyncRouter: RouteRecordRaw[] = [
         }
       },
       {
-        path: '/document/preview',
-        component: PermissionConsole,
-        name: 'preview',
+        path: '/document/table',
+        component: DocumentPreview,
+        name: 'table',
         meta: {
           isNav: true,
           role: ['admin', 'editor', 'normal']
