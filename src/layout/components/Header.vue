@@ -45,7 +45,8 @@ const handleOpenConfirm = () => {
 
 // 退出登录
 const handleLogout = async () => {
-  const result = await logoutApi()
+  // node-admin登出接口
+  //   const result = await logoutApi()
   //清除信息
   localStorage.removeItem('token')
   localStorage.removeItem('userInfo')

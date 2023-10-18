@@ -12,8 +12,11 @@ router.beforeEach(async (to, from) => {
   if (isAuthenticated) {
     const userInfo = localStorage.getItem('userInfo')
     if (userInfo === null) {
-      const resq = await getUserInfoApi()
-      localStorage.setItem('userInfo', JSON.stringify(resq.data.data.userInfo))
+      // const resq = await getUserInfoApi()
+      const userInfo = {
+        username: 'admin'
+      }
+      localStorage.setItem('userInfo', JSON.stringify(userInfo))
     }
   }
   console.log(to, from)

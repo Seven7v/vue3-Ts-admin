@@ -68,8 +68,8 @@ import changeLanguage from '../components/changeLanguage.vue'
 const { t } = useI18n()
 const formRef = ref<FormInstance>()
 const dynamicValidateForm = reactive<InterfaceLoginReq>({
-  username: '',
-  password: ''
+  username: 'admin',
+  password: 'admin'
 })
 const router = useRouter()
 
@@ -82,12 +82,12 @@ const submitForm = async (formEl: FormInstance | undefined) => {
       const res = await loginApi(dynamicValidateForm)
       if (res.data.code == 200) {
         localStorage.setItem('token', res.data.token)
-        const loginTimeParams = {
-          username: dynamicValidateForm.username,
-          loginTime: new Date()
-        }
-        const resq = await setLoginTimeApi(loginTimeParams)
-        console.log(resq)
+        // const loginTimeParams = {
+        //   username: dynamicValidateForm.username,
+        //   loginTime: new Date()
+        // }
+        // const resq = await setLoginTimeApi(loginTimeParams)
+        // console.log(resq)
         router.push({
           name: 'home'
         })

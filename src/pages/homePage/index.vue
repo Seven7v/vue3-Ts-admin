@@ -187,8 +187,15 @@ const handleSendMessage = async () => {
   console.log(res)
 }
 const getData = async () => {
-  const res = await getDashBord()
-  dashData.value = res.data.data
+  // node-admin使用内容
+  //   const res = await getDashBord()
+  //   dashData.value = res.data.data
+  dashData.value = {
+    loginCount: Math.ceil(Math.random() * 1000),
+    messageCount: Math.ceil(Math.random() * 5000),
+    payCount: Math.ceil(Math.random() * 1000),
+    keyWord: Math.ceil(Math.random() * 1000)
+  }
 }
 // handleSendMessage()
 getData()
