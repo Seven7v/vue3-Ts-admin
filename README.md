@@ -7,6 +7,12 @@
 
 [💓💓 TypeScript](https://www.typescriptlang.org/)
 
+只使用前端功能，请切换到`vite-admin`分支，运行。
+
+![alt 展示图片](https://i.ibb.co/P1MQycS/20231018173618.png)
+
+![alt 展示图片](https://i.ibb.co/gZZ15XX/20231018174039.png)
+
 如果需要使用自建后台服务请克隆
 [node-admin](https://github.com/Seven7v/node-admin)
 
