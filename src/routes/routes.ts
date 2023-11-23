@@ -58,6 +58,15 @@ const asyncRouter: RouteRecordRaw[] = [
           isNav: true,
           role: ['admin', 'editor', 'normal']
         }
+      },
+      {
+        path: '/statistics/detail',
+        component: Chart,
+        name: 'chartDetail',
+        meta: {
+          isNav: false,
+          role: ['admin', 'editor', 'normal']
+        }
       }
     ]
   },
