@@ -68,8 +68,8 @@ import changeLanguage from '../components/changeLanguage.vue'
 const { t } = useI18n()
 const formRef = ref<FormInstance>()
 const dynamicValidateForm = reactive<InterfaceLoginReq>({
-  username: '',
-  password: ''
+  username: 'seven@admin.com',
+  password: 'admin'
 })
 const router = useRouter()
 
