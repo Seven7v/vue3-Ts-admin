@@ -34,7 +34,7 @@ const handleRouter = (route: RouteRecordRaw[]): RouteRecordRaw[] => {
   let subRoute: RouteRecordRaw[] = []
   subRoute = route.filter(item => {
     if (item.children) {
-      handleRouter(item.children)
+      item.children = handleRouter(item.children)
     }
     return item.meta && item.meta.isNav
   })
